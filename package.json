@@ -14,7 +14,8 @@
     "axios": "^0.27.2",
     "swiper": "^4.5.1",
     "vue": "^2.5.2",
-    "vue-router": "^3.6.5"
+    "vue-router": "^3.6.5",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

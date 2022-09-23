@@ -16,44 +16,44 @@ Vue.use(VueRouter);
 
 export default new VueRouter({
     // 所有路由
-    routes:[
-        
-        {
-            path:'/msite',
-            component: MSite,
-            meta:{
-                showFooter: true,
-            },
-        },
-        {
-            path:'/search',
-            component: Search,
-            meta:{
-                showFooter: true,
-            },
-        },
-        {
-            path:'/order',
-            component: Order,
-            meta:{
-                showFooter: true,
-            },
-        },
-        {
-            path:'/profile',
-            component: Profile,
-            meta:{
-                showFooter: true,
-            },
-        },
-        {
-            path:'/Login',
-            component: Login,
-            
-        },
+    routes: [
         {
             path: '/',
             redirect: '/msite',
         },
+        {
+            path: '/msite',
+            component: MSite,
+            meta: {
+                showFooter: true,
+            },
+        },
+        {
+            path: '/search',
+            component: Search,
+            meta: {
+                showFooter: true,
+            },
+        },
+        {
+            path: '/order',
+            component: Order,
+            meta: {
+                showFooter: true,
+            },
+        },
+        {
+            path: '/profile',
+            component: Profile,
+            meta: {
+                showFooter: true,
+            },
+        },
+        {
+            path: '/Login',
+            component: Login,
+
+        },
+
     ]
 })
