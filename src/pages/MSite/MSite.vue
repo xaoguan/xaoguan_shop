@@ -103,6 +103,7 @@ export default {
   watch: {
     categorysArr() {
       // 创建一个 Swiper实例对象，来实现轮播
+      // 一旦完成页面更新, 立即调用(此条语句要写在数据更新之后)
       this.$nextTick(() => {
         new Swiper(".swiper-container", {
           // 可以循环轮播
