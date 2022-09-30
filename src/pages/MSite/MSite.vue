@@ -2,15 +2,18 @@
   <section class="msite">
     <!--首页头部-->
     <HeaderTop :title="address.name">
-      <span class="header_search" slot="left">
+      <router-link ></router-link>
+      <router-link class="header_search" slot="left" to="/search">
         <i class="iconfont icon-sousuo"></i>
-      </span>
-      <span class="header_login" slot="right">
-        <span class="header_login_text">登录|注册</span>
-      </span>
+      </router-link>
+      <router-link class="header_login" slot="right" :to="userInfo._id ? '/userinfo' : '/login'">
+        <span class="header_login_text" v-if="!userInfo._id">登录|注册</span>
+        <span class="header_login_text" v-else><i class="iconfont icon-person"></i></span>
+        
+      </router-link>
     </HeaderTop>
     <!--首页导航-->
-    <nav class="msite_nav">
+    <nav class="msite_nav" v-if="categorys.length">
       <div class="swiper-container">
         <div class="swiper-wrapper">
           <div
@@ -35,13 +38,14 @@
         <div class="swiper-pagination"></div>
       </div>
     </nav>
+    <img src="./images/msite_back.svg" alt="" v-else />
     <!--首页附近商家-->
     <div class="msite_shop_list">
       <div class="shop_header">
         <i class="iconfont icon-xuanxiang"></i>
         <span class="shop_header_title">附近商家</span>
       </div>
-      <shopList></shopList>
+      <ShopList></ShopList>
     </div>
   </section>
 </template>
@@ -49,9 +53,9 @@
 <script>
 import { mapState } from "vuex";
 import Swiper from "swiper";
-import "swiper/dist/css/swiper.min.css";
+import "swiper/css/swiper.min.css";
 import HeaderTop from "../../components/HeaderTop/HeaderTop.vue";
-import shopList from "../../components/shopList/shopList.vue";
+import ShopList from '../../components/ShopList/ShopList';
 
 export default {
   data() {
@@ -60,15 +64,16 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch("getCategorys");
-    this.$store.dispatch("getAddress");
+    // this.$store.dispatch("getCategorys");
+    // this.$store.dispatch("getAddress");
+    this.$store.dispatch("getShops");
   },
   components: {
     HeaderTop,
-    shopList,
+    ShopList,
   },
   computed: {
-    ...mapState(["address", "categorys"]),
+    ...mapState(["address", "categorys", "userInfo"]),
     // address(){
     //   console.log('Msite-computed-address');
     //   // computed比mounted先调用, 所以先执行了一次log,
@@ -101,7 +106,7 @@ export default {
     },
   },
   watch: {
-    categorysArr() {
+    categorys() {
       // 创建一个 Swiper实例对象，来实现轮播
       // 一旦完成页面更新, 立即调用(此条语句要写在数据更新之后)
       this.$nextTick(() => {

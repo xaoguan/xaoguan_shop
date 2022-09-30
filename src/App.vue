@@ -14,10 +14,13 @@ export default {
     FooterGuide,
     },
   mounted(){
-    // this.getAddress();
+    this.getAddress();
+    this.getUserInfo();
+    this.getCategorys();
   },
   methods:{
-    // ...mapActions(['getAddress'])
+    ...mapActions(['getAddress','getUserInfo','getCategorys']),
+    // ...mapActions(['getUserInfo']),
   }
 
 }
